@@ -1,0 +1,23 @@
+main {
+    padding: 5vw;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1vw;
+    justify-items: stretch;
+    height: 75vw;
+    width: 75vw;
+}
+
+.boardSquare {
+    border: thin solid black;
+    /* height: 15vw;
+    width: 15vw; */
+    justify-self: stretch;
+}
