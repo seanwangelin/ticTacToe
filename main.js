@@ -1,8 +1,14 @@
-let boardSquares = document.querySelectorAll('.boardSquare');
+const boardSquares = document.querySelectorAll('.boardSquare');
 
-let board = document.getElementById('board');
+const board = document.getElementById('board');
+
+const singlePlayer = document.getElementById('singlePlayer');
+
+const multiPlayer = document.getElementById('multiPlayer')
 
 let player = 'x';
+
+let gameMode=2;
 
 let gameBoard = [
     null,null,null,
@@ -30,6 +36,16 @@ const getWinner = symbol => {
     }
 }
 
+singlePlayer.addEventListener('click', function(){
+    gameMode=1;
+    console.log(gameMode);
+})
+
+multiPlayer.addEventListener('click', function(){
+    gameMode=2;
+    console.log(gameMode);
+})
+
 boardSquares.forEach(val=>{
     
     val.addEventListener('click', function(){
@@ -47,8 +63,6 @@ boardSquares.forEach(val=>{
             player='x';
         }
         
-        
-
         console.log(gameBoard);
     })
 });
