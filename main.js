@@ -1,4 +1,4 @@
-const boardSquares = document.querySelectorAll('.boardSquare');
+let boardSquares = document.querySelectorAll('.boardSquare');
 
 const board = document.getElementById('board');
 
@@ -36,33 +36,89 @@ const getWinner = symbol => {
     }
 }
 
+let firstNull = gameBoard.find(element =>{
+    return element === null;
+    }
+);
+
+// let newBoardSquares = Array.from(boardSquares);
+
+// console.log(newBoardSquares);
+console.log(firstNull)
+
 singlePlayer.addEventListener('click', function(){
     gameMode=1;
-    console.log(gameMode);
-})
-
-multiPlayer.addEventListener('click', function(){
-    gameMode=2;
-    console.log(gameMode);
-})
-
-boardSquares.forEach(val=>{
-    
-    val.addEventListener('click', function(){
-        if(player === 'x'){
+    boardSquares.forEach(val=>{
+        val.addEventListener('click', function(){
+            if(val.innerHTML==='x'||val.innerHTML==='y'){
+                console.log("you can't do that")
+            } else {
             val.innerHTML='x';
             gameBoard[val.id]='x';
+            for(let i=gameBoard.length-1; i>=0; i--){
+                if(gameBoard[i]===null){
+                    let computerSquare = document.getElementById(i);
+                    computerSquare.innerHTML = 'y';
+                    gameBoard[i]='y';
+                    break;
+                }
+            }
+            console.log(gameBoard);
             getWinner(player);
-            
-            player='y';
-        } else {
-            val.innerHTML='y';
-            gameBoard[val.id]='y';
-            getWinner(player);
-
-            player='x';
-        }
+            }
+        })
         
-        console.log(gameBoard);
     })
-});
+    console.log('single');
+})
+// boardSquares.forEach(val=>{
+//     console.log(val);
+// })
+multiPlayer.addEventListener('click', function(){
+    gameMode=2;
+    boardSquares.forEach(val=>{
+
+        val.addEventListener('click', function(){
+            if(player === 'x'){
+                val.innerHTML='x';
+                gameBoard[val.id]='x';
+                getWinner(player);
+
+                player='y';
+            } else {
+                val.innerHTML='y';
+                gameBoard[val.id]='y';
+                getWinner(player);
+
+                player='x';
+            }
+
+            console.log(gameBoard);
+        })
+    });
+})
+
+// if(gameMode===2){
+//     boardSquares.forEach(val=>{
+
+//         val.addEventListener('click', function(){
+//             if(player === 'x'){
+//                 val.innerHTML='x';
+//                 gameBoard[val.id]='x';
+//                 getWinner(player);
+
+//                 player='y';
+//             } else {
+//                 val.innerHTML='y';
+//                 gameBoard[val.id]='y';
+//                 getWinner(player);
+
+//                 player='x';
+//             }
+
+//             console.log(gameBoard);
+//         })
+//     });
+// } else if(gameMode===1){
+//     console.log('singlePlayer')
+// }
