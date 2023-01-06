@@ -47,6 +47,9 @@ const getWinner = symbol => {
 }
 
 const singlePlayerFunc = () =>{
+    let getName = window.prompt('Enter your name:');
+    document.getElementById('x').innerHTML=`x: ${getName}`;
+    document.getElementById('y').innerHTML=`y: computer`
 
     boardSquares.forEach(val => {
         const singleLogic = () => {
@@ -72,13 +75,19 @@ const singlePlayerFunc = () =>{
             
         }
         val.addEventListener('click', singleLogic);
-    })
+    });
     singlePlayer.removeEventListener('click',singlePlayerFunc);
     multiPlayer.removeEventListener('click',multiPlayerFunc);
 }
 
 
 const multiPlayerFunc = () =>{
+    let getName1 = window.prompt('Player 1, enter your name:');
+    let getName2 = window.prompt('Player 2, enter your name:');
+
+    document.getElementById('x').innerHTML=`x: ${getName1}`;
+    document.getElementById('y').innerHTML=`y: ${getName2}`;
+
     boardSquares.forEach(val => {
         val.addEventListener('click', () => {
             if (val.innerHTML === 'x' || val.innerHTML === 'y') {
