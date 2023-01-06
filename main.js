@@ -16,6 +16,61 @@ let gameBoard = [
     null, null, null
 ];
 
+const singlePlayerFunc = () =>{
+    boardSquares.forEach(val => {
+        val.addEventListener('click', function () {
+            if (val.innerHTML === 'x' || val.innerHTML === 'y') {
+                console.log("you can't do that")
+            } else {
+                val.innerHTML = 'x';
+                gameBoard[val.id] = 'x';
+
+                for (let i = gameBoard.length - 1; i >= 0; i--) {
+                    if (gameBoard[i] === null) {
+                        let computerSquare = document.getElementById(i);
+                        computerSquare.innerHTML = 'y';
+                        gameBoard[i] = 'y';
+                        break;
+                    }
+                }
+                console.log(gameBoard);
+                getWinner(player);
+            }
+        })
+
+    })
+    singlePlayer.removeEventListener('click',singlePlayerFunc);
+    multiPlayer.removeEventListener('click',multiPlayerFunc);
+}
+
+const multiPlayerFunc = () =>{
+    boardSquares.forEach(val => {
+        val.addEventListener('click', () => {
+            if (val.innerHTML === 'x' || val.innerHTML === 'y') {
+                console.log("you can't do that")
+            } else {
+                if (player === 'x') {
+                    val.innerHTML = 'x';
+                    gameBoard[val.id] = 'x';
+                    getWinner(player);
+
+                    player = 'y';
+                } else {
+                    val.innerHTML = 'y';
+                    gameBoard[val.id] = 'y';
+                    getWinner(player);
+                    player = 'x';
+                }
+
+                console.log(gameBoard);
+            }
+        })
+    });
+    
+    singlePlayer.removeEventListener('click',singlePlayerFunc);
+    multiPlayer.removeEventListener('click', multiPlayerFunc);
+}
+
 const getWinner = symbol => {
     if (gameBoard[0] === symbol && gameBoard[1] === symbol && gameBoard[2] === symbol) {
         console.log('winner');
@@ -43,56 +98,8 @@ let firstNull = gameBoard.find(element => {
 
 console.log(firstNull)
 
-singlePlayer.addEventListener('click', function () {
-    gameMode = 1;
-    boardSquares.forEach(val => {
-        val.addEventListener('click', function () {
-            if (val.innerHTML === 'x' || val.innerHTML === 'y') {
-                console.log("you can't do that")
-            } else {
-                val.innerHTML = 'x';
-                gameBoard[val.id] = 'x';
-                for (let i = gameBoard.length - 1; i >= 0; i--) {
-                    if (gameBoard[i] === null) {
-                        let computerSquare = document.getElementById(i);
-                        computerSquare.innerHTML = 'y';
-                        gameBoard[i] = 'y';
-                        break;
-                    }
-                }
-                console.log(gameBoard);
-                getWinner(player);
-            }
-        })
-
-    })
-    console.log('single');
-})
-
-multiPlayer.addEventListener('click', () => {
-    gameMode = 2;
-    boardSquares.forEach(val => {
-        val.addEventListener('click', () => {
-            if (val.innerHTML === 'x' || val.innerHTML === 'y') {
-                console.log("you can't do that")
-            } else {
-                if (player === 'x') {
-                    val.innerHTML = 'x';
-                    gameBoard[val.id] = 'x';
-                    getWinner(player);
-
-                    player = 'y';
-                } else {
-                    val.innerHTML = 'y';
-                    gameBoard[val.id] = 'y';
-                    getWinner(player);
-                    player = 'x';
-                }
+singlePlayer.addEventListener('click', singlePlayerFunc)
 
 
-                console.log(gameBoard);
-            }
-        })
-    });
-})
+multiPlayer.addEventListener('click', multiPlayerFunc)
 
