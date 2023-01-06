@@ -83,6 +83,8 @@ const multiPlayerFunc = () =>{
         val.addEventListener('click', () => {
             if (val.innerHTML === 'x' || val.innerHTML === 'y') {
                 console.log("you can't do that")
+            } else if(winner){
+                console.log(`you can't do that`)
             } else {
                 if (player === 'x') {
                     val.innerHTML = 'x';
