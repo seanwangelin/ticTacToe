@@ -6,6 +6,8 @@ const singlePlayer = document.getElementById('singlePlayer');
 
 const multiPlayer = document.getElementById('multiPlayer');
 
+const reset = document.getElementById('reset');
+
 const messageBoard = document.getElementById('messageBoard');
 
 let player = 'x';
@@ -72,7 +74,7 @@ const getComputerWinner = () =>{
 }
 
 const checkForDraw = () =>{
-    if(gameBoard.includes(null)===false){
+    if(!gameBoard.includes(null)){
         messageBoard.innerHTML=`This game is a draw, reset the board!`
     }
 }
@@ -165,8 +167,11 @@ const multiPlayerFunc = () =>{
     multiPlayer.removeEventListener('click', multiPlayerFunc);
 }
 
+singlePlayer.addEventListener('click', singlePlayerFunc);
 
-singlePlayer.addEventListener('click', singlePlayerFunc)
 
+multiPlayer.addEventListener('click', multiPlayerFunc);
 
-multiPlayer.addEventListener('click', multiPlayerFunc)
+reset.addEventListener('click', ()=> {
+    window.location.reload();
+})
