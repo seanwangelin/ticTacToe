@@ -71,6 +71,12 @@ const getComputerWinner = () =>{
     }
 }
 
+const checkForDraw = () =>{
+    if(gameBoard.includes(null)===false){
+        messageBoard.innerHTML=`This game is a draw, reset the board!`
+    }
+}
+
 const singlePlayerFunc = () =>{
     let getName = window.prompt('Enter your name:');
     name1 = getName;
@@ -103,7 +109,7 @@ const singlePlayerFunc = () =>{
                     }
                 }
             }
-            
+            checkForDraw();
         }
 
         val.addEventListener('click', singleLogic);
@@ -150,6 +156,8 @@ const multiPlayerFunc = () =>{
                     player = 'x';
                 }
             }
+            console.log(gameBoard);
+            checkForDraw();
         })
     });
 
