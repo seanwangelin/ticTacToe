@@ -24,7 +24,7 @@ let gameBoard = [
     null, null, null
 ];
 
-const getWinner = symbol => {
+const getWinner = symbol => { 
 
     if (gameBoard[0] === symbol && gameBoard[1] === symbol && gameBoard[2] === symbol) {
         winner=true;
@@ -48,6 +48,29 @@ const getWinner = symbol => {
     }
 }
 
+const getComputerWinner = () =>{
+    if (gameBoard[0] === 'y' && gameBoard[1] === 'y' && gameBoard[2] === 'y') {
+        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[3] === 'y' && gameBoard[4] === 'y' && gameBoard[5] === 'y') {        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[6] === 'y' && gameBoard[7] === 'y' && gameBoard[8] === 'y') {        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[0] === 'y' && gameBoard[3] === 'y' && gameBoard[6] === 'y') {        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[1] === 'y' && gameBoard[4] === 'y' && gameBoard[7] === 'y') {        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[2] === 'y' && gameBoard[5] === 'y' && gameBoard[8] === 'y') {        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[0] === 'y' && gameBoard[4] === 'y' && gameBoard[8] === 'y') {
+        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    } else if (gameBoard[2] === 'y' && gameBoard[4] === 'y' && gameBoard[6] === 'y') {
+        winner=true;
+        messageBoard.innerHTML=`The computer wins!!!`;
+    }
+}
+
 const singlePlayerFunc = () =>{
     let getName = window.prompt('Enter your name:');
     name1 = getName;
@@ -57,7 +80,7 @@ const singlePlayerFunc = () =>{
 
     boardSquares.forEach(val => {
         const singleLogic = () => {
-
+            
             if(val.innerHTML === 'x' || val.innerHTML === 'y') {
                 messageBoard.innerHTML=`you can't do that!!`
             } else if(winner) {
@@ -65,24 +88,26 @@ const singlePlayerFunc = () =>{
             } else {
                 val.innerHTML = 'x';
                 gameBoard[val.id] = 'x';
+                getWinner(player);
                 
                 for (let i = gameBoard.length - 1; i >= 0; i--) {
-                    if (gameBoard[i] === null) {
+                    if(winner){
+                        console.log('the game is over');
+                    } else if (gameBoard[i] === null) {
                         let computerSquare = document.getElementById(i);
-
+                        
                         computerSquare.innerHTML = 'y';
                         gameBoard[i] = 'y';
+                        getComputerWinner();
                         break;
                     }
                 }
-
-                getWinner(player);
             }
             
         }
 
         val.addEventListener('click', singleLogic);
-        messageBoard.innerHTML=`Defeat the computer!`;
+        messageBoard.innerHTML=`Defeat the computer!`
     });
 
     singlePlayer.removeEventListener('click',singlePlayerFunc);
