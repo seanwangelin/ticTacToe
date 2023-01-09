@@ -10,7 +10,7 @@ const reset = document.getElementById('reset');
 
 const messageBoard = document.getElementById('messageBoard');
 
-let player = 'x';
+let player = '';
 
 let name1='';
 
@@ -79,6 +79,7 @@ const checkForDraw = () =>{
 
 const singlePlayerFunc = () =>{
     let getName = window.prompt('Enter your name:');
+    player='x'
     name1 = getName;
     name2 = 'computer';
     document.getElementById('x').innerHTML=`x: ${name1}`;
@@ -125,12 +126,29 @@ const multiPlayerFunc = () =>{
     let getName1 = window.prompt('Player 1, enter your name:');
     let getName2 = window.prompt('Player 2, enter your name:');
 
+    const turn = Math.floor(Math.random()*2);
+    console.log(turn);
+
     document.getElementById('x').innerHTML=`x: ${getName1}`;
     document.getElementById('y').innerHTML=`y: ${getName2}`;
 
     name1=getName1;
     name2=getName2;
-    messageBoard.innerHTML=`${name1}'s turn!`
+
+    const whichTurn = () => {
+        if(turn === 0){
+            return name1;
+        } else {
+            return name2;
+        }
+    }
+    messageBoard.innerHTML=`${whichTurn()}'s turn!`
+
+    if(turn===0){
+        player+='x';
+    } else if(turn===1){
+        player+='y';
+    }
 
     boardSquares.forEach(val => {
         val.addEventListener('click', () => {
