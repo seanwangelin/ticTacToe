@@ -142,7 +142,7 @@ const multiPlayerFunc = () =>{
             return name2;
         }
     }
-    messageBoard.innerHTML=`${whichTurn()}'s turn!`
+    messageBoard.innerHTML=`${whichTurn()}'s turn!`;
 
     if(turn===0){
         player+='x';
