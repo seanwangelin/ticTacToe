@@ -8,20 +8,22 @@
     <link rel='stylesheet' href="style.css"/>
     <script defer src="main.js"></script>
 </head>
+<header>
+    <h1>Tic Tac Toe!</h1>
+</header>
+<div id="gameModeContainer">
+    <button id="singlePlayer">Single Player</button>
+    <button id="multiPlayer">Multi-Player</button>
+    <button id="reset">Reset Game</button>
+</div>
 <body>
-    <header>
-        <h1>Tic Tac Toe!</h1>
-        <div id="gameModeContainer">
-            <button id="singlePlayer">Single Player</button>
-            <button id="multiPlayer">Multi-Player</button>
-            <button id="reset">Reset Game</button>
+    <section id="infoContainer">
+        <div id="names">
+            <div id="x">X:</div>
+            <div id="y">Y:</div>
         </div>
-    </header>
-    <div id="names">
-        <div id="x">x:</div>
-        <div id="y">y:</div>
-    </div>
-
+        
+    </section>
     <div id="messageBoard"></div>
     <main>
         <section id="board">

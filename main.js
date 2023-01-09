@@ -12,8 +12,6 @@ const messageBoard = document.getElementById('messageBoard');
 
 let player = 'x';
 
-let gameMode = 2;
-
 let name1='';
 
 let name2='';
@@ -174,4 +172,4 @@ multiPlayer.addEventListener('click', multiPlayerFunc);
 
 reset.addEventListener('click', ()=> {
     window.location.reload();
-})
+});
